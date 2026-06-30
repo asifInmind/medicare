@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Path from "../../components/Path";
 import { m } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function page() {
   const patientsData = [
@@ -77,9 +80,11 @@ export default function page() {
       ),
     },
   ];
+
+  const pathname = usePathname();
   return (
     <>
-      <Path path={"Patient register"} />
+      <Path path={pathname} />
       <div className="h-18 w-full flex justify-between bg-white rounded-[5px] px-4 my-2  items-center">
         <div>
           <p className="font-medium text-[21px]">
@@ -87,7 +92,10 @@ export default function page() {
           </p>
         </div>
         <div className="flex gap-5 items-center">
-          <span className="w-12 h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
+          <Link
+            className="w-12 h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
+            href={"/patients/addpatients"}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -102,7 +110,7 @@ export default function page() {
                 d="M12 4.5v15m7.5-7.5h-15"
               />
             </svg>
-          </span>
+          </Link>
 
           <span className="w-12 h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
             <svg

@@ -202,7 +202,7 @@ export default function Sidebar() {
 
   return (
     <motion.section
-      animate={{ width: isOpen ? "196px" : "70px" }}
+      animate={{ width: isOpen ? "216px" : "70px" }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="px-4 py-6 border-r border-b border-[#E0E0E0] h-full box-border"
     >
