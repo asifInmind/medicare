@@ -67,7 +67,7 @@ export default function OfflineConsultationsCard() {
         </div>
 
         {/* Right Column: Sparkline Area Chart with Blue Shading */}
-        <div className="w-40 h-24 flex-shrink-0 mb-1  mt-14">
+        <div className="w-40 h-24 shrink-0 mb-1  mt-14">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={chartData}

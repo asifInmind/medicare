@@ -99,7 +99,7 @@ export default function Signup() {
             ALL IN ONE DASHBOARD
           </h1>
           <Image
-            src={"/images/Patients.png"}
+            src={"/images/Patients.svg"}
             alt="dashboard image"
             width={100}
             height={100}

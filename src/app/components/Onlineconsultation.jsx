@@ -64,7 +64,7 @@ export default function Onlineconsultation() {
         </div>
 
         {/* Right Column: Sparkline Area Chart */}
-        <div className="w-40 h-34 flex-shrink-0 mb-1 mt-8">
+        <div className="w-40 h-34 shrink-0 mb-1 mt-8">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={chartData}

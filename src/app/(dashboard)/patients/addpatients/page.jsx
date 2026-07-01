@@ -9,7 +9,7 @@ export default function Addpatients() {
       <Path path={pathname} />
       <div className="h-18 w-full flex justify-between  bg-white rounded-[5px] px-4 my-2 mb-10  items-center">
         <div>
-          <p className="font-medium text-[21px]">add patients</p>
+          <p className="font-medium text-[21px] capitalize">add new patients</p>
         </div>
         <div className="flex gap-5 items-center">
           <button className="w-19.25 h-10.25 px-5 flex justify-center items-center py-1 cursor-pointer text-center border border-[#0000AC] rounded-[5px] font-medium text-[16px]">
@@ -33,7 +33,7 @@ export default function Addpatients() {
               <p className="text-[18px] text-[#333333]">
                 Record number will be assigned automatically when you save.
               </p>
-              <button className="w-[152px] h-[44px] py-[7px] px-[11px] border text-[#333333] font-bold text-[18px] rounded-[5px] mt-2 border-[#E0E0E0]">
+              <button className="w-38 h-11 py-1.75 px-2.75 border text-[#333333] font-bold text-[18px] rounded-[5px] mt-2 border-[#E0E0E0]">
                 assign manually
               </button>
             </div>
@@ -46,7 +46,7 @@ export default function Addpatients() {
               Forename
             </label>
             <input
-              className="border border-[#E0E0E0] w-[462px] h-[41px] my-4 rounded-[5px]"
+              className="border border-[#E0E0E0] w-115.5 h-10.25 px-3 my-4 rounded-[5px]"
               type="text"
               name="forename"
             />
@@ -59,7 +59,7 @@ export default function Addpatients() {
               Surname
             </label>
             <input
-              className="border border-[#E0E0E0] w-[462px] h-[41px] my-4 rounded-[5px]"
+              className="border border-[#E0E0E0] px-3 w-115.5 h-10.25  my-4 rounded-[5px]"
               type="text"
               name="surname"
             />
@@ -72,7 +72,7 @@ export default function Addpatients() {
               Date of birth
             </label>
             <input
-              className="border border-[#E0E0E0] rounded-[5px] w-[462px] h-[41px] my-4 rounded-[5px]j px-4"
+              className="border border-[#E0E0E0] px-3 rounded-[5px] w-115.5 h-10.25  my-4 rounded-[5px]j px-4"
               type="date"
               name="date"
             />
@@ -84,11 +84,11 @@ export default function Addpatients() {
             >
               Sex
             </label>
-            <div className="w-[462px] my-8">
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] hover:text-white rounded-[5px] bg-[#E0E0E0] text-[16px] py-3 px-4 capitalize me-4">
+            <div className="w-115.5 my-8">
+              <span className="w-20.75 h-11 cursor-pointer hover:bg-[#0000AC] hover:text-white rounded-[5px] bg-[#E0E0E0] text-[16px] py-3 px-4 capitalize me-4">
                 male
               </span>
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] hover:text-white rounded-[5px] bg-[#E0E0E0] text-[16px] py-3 px-4 capitalize me-4">
+              <span className="w-20.75 h-11 cursor-pointer hover:bg-[#0000AC] hover:text-white rounded-[5px] bg-[#E0E0E0] text-[16px] py-3 px-4 capitalize me-4">
                 Female
               </span>
             </div>
@@ -101,7 +101,7 @@ export default function Addpatients() {
               Diagnosis
             </label>
             <input
-              className="border border-[#E0E0E0] w-[462px] h-[41px] my-4 rounded-[5px]"
+              className="border px-3 border-[#E0E0E0] w-115.5 h-10.25 my-4 rounded-[5px]"
               type="text"
               name="diagnosis"
             />
@@ -116,7 +116,7 @@ export default function Addpatients() {
             <textarea
               name="notes"
               id=""
-              className="border border-[#E0E0E0] w-[462px] h-[141px] my-4 rounded-[5px]"
+              className="border p-3 border-[#E0E0E0] w-115.5 h-35.25 my-4 rounded-[5px]"
             ></textarea>
           </div>
           <div className="flex justify-between items-center">
@@ -127,7 +127,7 @@ export default function Addpatients() {
               Phone Number
             </label>
             <input
-              className="border border-[#E0E0E0] w-[462px] h-[41px] my-4 rounded-[5px]"
+              className="border px-3 border-[#E0E0E0] w-115.5 h-10.25 my-4 rounded-[5px]"
               type="tel"
               name="phone"
             />

@@ -59,7 +59,7 @@ export default function Upcoming() {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            className="size-4 border border-[#d2cccc] w-[20px] rounded-md h-[20px]"
+            className="size-4 border border-[#d2cccc] w-5 rounded-md h-5"
           >
             <path
               stroke-linecap="round"
@@ -73,15 +73,15 @@ export default function Upcoming() {
       {/* Timeline Wrapper */}
       <div className="relative pl-8">
         {/* Continuous Vertical Line */}
-        <div className="absolute left-[35px] top-3 bottom-3 w-[1px] bg-gray-200" />
+        <div className="absolute left-8.75 top-3 bottom-3 w-px bg-gray-200" />
 
         {scheduleData.map((group, groupIdx) => (
           <div key={groupIdx} className="relative mb-6 last:mb-0">
             {/* Hour Block Node Indicator */}
-            <div className="absolute left-[-2px] top-1.5 w-2.5 h-2.5 rounded-full bg-black z-10" />
+            <div className="absolute -left-0.5 top-1.5 w-2.5 h-2.5 rounded-full bg-black z-10" />
 
             {/* Main Hour Label */}
-            <div className="absolute left-[-54px] top-0 text-sm font-normal text-gray-400 w-12 text-right">
+            <div className="absolute -left-13.5 top-0 text-sm font-normal text-gray-400 w-12 text-right">
               {group.hour}
             </div>
 
@@ -250,7 +250,7 @@ export default function Upcoming() {
         ))}
 
         {/* Dynamic Bottom Ending Line Cap Point */}
-        <div className="absolute left-[30px] bottom-[0px] w-2.5 h-2.5 rounded-full bg-black z-10" />
+        <div className="absolute left-7.5 bottom-0 w-2.5 h-2.5 rounded-full bg-black z-10" />
       </div>
 
       {/* Footer view link */}

@@ -41,7 +41,7 @@ export default function PatientStatsCard() {
         </span>
 
         {/* Wrap the chart and its text inside a dedicated relative container */}
-        <div className="relative w-36 h-36 flex-shrink-0">
+        <div className="relative w-36 h-36 shrink-0">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie

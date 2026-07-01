@@ -177,9 +177,9 @@ const APPOINTMENTS = [
 
 export default function WeeklyScheduleGrid() {
   return (
-    <div className="w-full h-[calc(100vh-100px)] max-h-[800px] bg-white rounded-xl border border-gray-100 shadow-sm flex flex-col overflow-hidden">
+    <div className="w-full h-[calc(100vh-100px)] max-h-200 bg-white rounded-xl border border-gray-100 shadow-sm flex flex-col overflow-hidden">
       <div className="flex-1 overflow-auto">
-        <div className="grid grid-cols-[80px_repeat(6,minmax(220px,1fr))] min-w-[1400px] relative">
+        <div className="grid grid-cols-[80px_repeat(6,minmax(220px,1fr))] min-w-350 relative">
           <div className="sticky top-0 left-0 bg-white z-30 border-b border-r border-gray-100 h-16" />
 
           {DAYS.map((day) => (

@@ -1,14 +1,14 @@
+"use client";
 import React from "react";
-
-export default function NewAppointment() {
+export default function NewAppointment({ onClose }) {
   return (
     <>
-      <section className="w-190 bg-white mx-auto">
-        <div className="flex justify-between items-center px-6 bg-[#0000AC] h-[82px]">
+      <section className="w-190 bg-white mx-auto pb-9 rounded-[5px] my-10">
+        <div className="flex justify-between items-center px-6 bg-[#0000AC] rounded-t-[5px] h-20.5">
           <span className="text-[22px] font-bold text-white">
             New Appointment
           </span>
-          <span>
+          <span onClick={onClose}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -109,7 +109,7 @@ export default function NewAppointment() {
               Patients
             </label>
             <input
-              className="border border-[#E0E0E0] w-[462px] h-[41px] my-4 rounded-[5px]"
+              className="border border-[#E0E0E0] w-115.5 h-10.25 my-4 rounded-[5px]"
               type="text"
               name="patients"
             />
@@ -124,7 +124,7 @@ export default function NewAppointment() {
             <textarea
               name="visit"
               id=""
-              className="border border-[#E0E0E0] w-[462px] h-[141px] my-4 rounded-[5px]"
+              className="border border-[#E0E0E0] w-115.5 h-35.25 my-4 rounded-[5px]"
             ></textarea>
           </div>
           <div className="flex justify-between items-center">
@@ -134,11 +134,11 @@ export default function NewAppointment() {
             >
               Appointment Status
             </label>
-            <div className="w-[462px] my-8">
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+            <div className="w-115.5  my-8">
+              <span className="w-20.74 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
                 Confirmation required
               </span>
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
                 Confirmed
               </span>
             </div>
@@ -150,23 +150,23 @@ export default function NewAppointment() {
             >
               Duration
             </label>
-            <div className="w-[462px] my-8">
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+            <div className="w-115.5 my-8">
+              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
                 10
               </span>
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
                 30
               </span>
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
                 45
               </span>
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
                 60
               </span>
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
                 90
               </span>
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
                 120
               </span>
             </div>
@@ -178,43 +178,78 @@ export default function NewAppointment() {
             >
               Appointment type
             </label>
-            <div className="w-[462px] my-8">
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+            <div className="w-115.5 my-8">
+              <span className="w-20.75 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
                 first time
               </span>
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="w-20.75 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
                 follow up visit
               </span>
             </div>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-start gap-22 items-center">
             <label
               htmlFor="sex"
               className="text-[18px] font-normal text-[#4F4F4F]"
             >
               Online consultation
             </label>
-            <div className="w-[462px] my-8">
-              <span className="w-[83px] h-[44px] cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
-                No{" "}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="size-7 font-bold  cursor-pointer"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18 18 6M6 6l12 12"
-                  />
-                </svg>
-              </span>
+            <div className="flex items-center gap-2 border border-[#eb5757] rounded-[5px] px-4 py-2 cursor-pointer bg-[#FAFAFA] text-[#EB5757] my-8 w-fit">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2.5}
+                stroke="currentColor"
+                className="w-8 rounded-[5px] h-8 bg-[#eb5757] text-white font-bold p-1 cursor-pointer"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+              <span className="text-[26px] font-medium capitalize">No</span>
             </div>
           </div>
         </section>
+
+        <div className="p-8">
+          <div className="flex items-center gap-2 pb-2.5">
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-7 font-bold text-[#828282]"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                />
+              </svg>
+            </span>
+            <span className="font-bold text-[18px]">Send notifications</span>
+          </div>
+          <p className="text-16 text-[#333333] w-162.5">
+            Appointment confirmation and reminder messages will be automatically
+            sent to clinic SMS notification settings.
+          </p>
+        </div>
+        <div className="flex justify-end gap-4 me-16 ">
+          <button className="font-semibold capitalize cursor-pointer">
+            cancel
+          </button>
+          <button className="w-44 h-11 cursor-pointer bg-[#0000AC]  text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+            begin Appointment
+          </button>
+          <button className="w-16.75 px-auto h-11 cursor-pointer border border-[#0000AC]  text-[#0000ac] rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+            save
+          </button>
+        </div>
       </section>
     </>
   );

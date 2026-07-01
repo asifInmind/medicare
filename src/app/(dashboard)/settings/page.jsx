@@ -19,7 +19,7 @@ export default function Settings() {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            className="size-6 p-2 rounded-md w-[45px] h-[45px]  border border-[#E0E0E0]"
+            className="size-6 p-2 rounded-md w-11.25 h-11.25  border border-[#E0E0E0]"
           >
             <path
               stroke-linecap="round"

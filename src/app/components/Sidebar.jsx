@@ -2,9 +2,16 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter, usePathname } from "next/navigation"; // 1. Added usePathname
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const navigateRoute = (url) => {
+    router.push(url);
+  };
 
   const topNavLinks = [
     {
@@ -94,7 +101,7 @@ export default function Sidebar() {
     {
       id: 5,
       navText: "Messages",
-      navPath: "analytics",
+      navPath: "/messages", // Fixed path spelling mistake
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -200,12 +207,61 @@ export default function Sidebar() {
     },
   };
 
+  // Helper render method to clean up duplicate map structures
+  const renderNavLinks = (links) => {
+    return links.map((menu) => {
+      // Check if current item's path matches the actual window URL path
+      const isActive = pathname === menu.navPath;
+
+      return (
+        <li
+          key={menu.id}
+          onClick={() => navigateRoute(menu.navPath)}
+          className={`relative flex justify-start items-center gap-2 my-1 py-2.5 px-4 -mx-4 cursor-pointer group overflow-hidden whitespace-nowrap transition-colors duration-200 
+            `}
+        >
+          {/* Active Left Indicator Bar */}
+          {isActive && (
+            <motion.div
+              layoutId="activeIndicator"
+              className="absolute left-0 top-1.5 bottom-1.5 w-1.5 bg-[#0000AC] rounded-r-md"
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            />
+          )}
+
+          {/* Icon wrapper */}
+          <span
+            className={`font-normal text-[12.69px] shrink-0 transition-colors duration-200
+              ${isActive ? "text-[#0000AC]" : "text-[#828282] group-hover:text-[#0000AC]"}`}
+          >
+            {menu.icon}
+          </span>
+
+          {/* Text labels inside framer-motion */}
+          <motion.div
+            variants={textVariants}
+            animate={isOpen ? "open" : "closed"}
+          >
+            <Link
+              href={menu.navPath}
+              className={`font-normal text-[15.69px] transition-colors duration-200
+                ${isActive ? "text-[#0000AC] font-medium" : "text-[#828282] group-hover:text-[#0000AC]"}`}
+            >
+              {menu.navText}
+            </Link>
+          </motion.div>
+        </li>
+      );
+    });
+  };
+
   return (
     <motion.section
       animate={{ width: isOpen ? "216px" : "70px" }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="px-4 py-6 border-r border-b border-[#E0E0E0] h-full box-border"
+      className="px-4 py-6 border-r border-b border-[#E0E0E0] h-full box-border select-none"
     >
+      {/* Sidebar Toggle Control Header */}
       <div className="flex items-center justify-between mb-4 h-6">
         <AnimatePresence mode="wait">
           {isOpen && (
@@ -220,68 +276,31 @@ export default function Sidebar() {
           )}
         </AnimatePresence>
         <span className="cursor-pointer ml-auto pt-5">
-          {isOpen ? (
-            <div onClick={() => setIsOpen(false)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="size-6 ml-0"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-              </svg>
-            </div>
-          ) : (
-            <div onClick={() => setIsOpen(true)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="size-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-              </svg>
-            </div>
-          )}
+          <div onClick={() => setIsOpen(!isOpen)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className={`size-6 transition-transform duration-300 ${!isOpen ? "rotate-180" : ""}`}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
+          </div>
         </span>
       </div>
 
+      {/* Top Main Navigation Items */}
       <ul className="border-b border-[#E0E0E0] pb-5">
-        {topNavLinks.map((menu) => (
-          <li
-            key={menu.id}
-            className="flex justify-start items-center gap-2 my-1 py-2.5 group overflow-hidden whitespace-nowrap"
-          >
-            <span className="font-normal text-[12.69px] cursor-pointer text-[#828282] group-hover:text-[#0000AC] shrink-0">
-              {menu.icon}
-            </span>
-            <motion.div
-              variants={textVariants}
-              animate={isOpen ? "open" : "closed"}
-            >
-              <Link
-                href={menu.navPath}
-                className="font-normal text-[15.69px] text-[#828282] group-hover:text-[#0000AC]"
-              >
-                {menu.navText}
-              </Link>
-            </motion.div>
-          </li>
-        ))}
+        {renderNavLinks(topNavLinks)}
       </ul>
 
+      {/* Section Subheading separator */}
       <div className="h-10 flex items-center">
         <AnimatePresence mode="wait">
           {isOpen && (
@@ -297,29 +316,8 @@ export default function Sidebar() {
         </AnimatePresence>
       </div>
 
-      <ul>
-        {bottomNavLinks.map((menu) => (
-          <li
-            key={menu.id}
-            className="flex justify-start items-center gap-2 my-1 py-2.5 group overflow-hidden whitespace-nowrap"
-          >
-            <span className="font-normal text-[12.69px] cursor-pointer text-[#828282] group-hover:text-[#0000AC] shrink-0">
-              {menu.icon}
-            </span>
-            <motion.div
-              variants={textVariants}
-              animate={isOpen ? "open" : "closed"}
-            >
-              <Link
-                href={menu.navPath}
-                className="font-normal text-[15.69px] text-[#828282] group-hover:text-[#0000AC]"
-              >
-                {menu.navText}
-              </Link>
-            </motion.div>
-          </li>
-        ))}
-      </ul>
+      {/* Bottom Utility Navigation Items */}
+      <ul>{renderNavLinks(bottomNavLinks)}</ul>
     </motion.section>
   );
 }
