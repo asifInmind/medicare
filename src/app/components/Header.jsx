@@ -29,8 +29,8 @@ export default function Header() {
         </section>
 
         {/* DESKTOP CONTAINER - Hidden on mobile screens (`hidden md:flex`) */}
-        <section className="hidden md:flex justify-between w-full px-5 gap-3">
-          <div className="w-138 my-auto">
+        <section className="hidden lg:flex justify-between w-full px-5 gap-3">
+          <div className=" w-full lg:w-90 xl:w-138 my-auto">
             <div className="border border-[#E0E0E0] rounded-md flex justify-between items-center px-2 h-10.25">
               <input
                 type="search"
@@ -119,7 +119,7 @@ export default function Header() {
         {/* MOBILE HAMBURGER BUTTON - Visible only on small devices */}
         <button
           onClick={() => setIsOpen(true)}
-          className="block md:hidden p-2 text-[#1D1D1D] focus:outline-none"
+          className="block lg:hidden p-2 absolute right-4 text-[#1D1D1D] focus:outline-none"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

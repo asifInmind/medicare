@@ -177,9 +177,9 @@ const APPOINTMENTS = [
 
 export default function WeeklyScheduleGrid() {
   return (
-    <div className="w-full h-[calc(100vh-100px)] max-h-200 bg-white rounded-xl border border-gray-100 shadow-sm flex flex-col overflow-hidden">
+    <div className="w-full h-[calc(100vh-100px)] max-h-200 bg-white rounded-xl border border-gray-100  flex flex-col overflow-hidden">
       <div className="flex-1 overflow-auto">
-        <div className="grid grid-cols-[80px_repeat(6,minmax(220px,1fr))] min-w-350 relative">
+        <div className="grid grid-cols-[80px_repeat(6,minmax(220px,1fr))] min-w-350  relative">
           <div className="sticky top-0 left-0 bg-white z-30 border-b border-r border-gray-100 h-16" />
 
           {DAYS.map((day) => (
@@ -193,7 +193,7 @@ export default function WeeklyScheduleGrid() {
 
           {TIME_SLOTS.map((time) => (
             <React.Fragment key={time}>
-              <div className="sticky left-0 bg-white z-10 border-b border-r border-gray-100 h-44 flex items-start justify-center pt-4 text-xs font-semibold text-gray-500">
+              <div className="sticky w-8 md:w-full left-0 bg-white z-10 border-b border-r border-gray-100 h-44 flex items-start  justify-start md:justify-center pt-4 text-xs font-semibold text-gray-500">
                 {time}
               </div>
 

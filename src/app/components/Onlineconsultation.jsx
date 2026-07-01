@@ -15,7 +15,7 @@ const chartData = [
 
 export default function Onlineconsultation() {
   return (
-    <div className="relative w-full max-w-sm  px-6 py-4 select-none">
+    <div className="relative w-full px-6 py-4 select-none">
       <button className="absolute top-6 right-6 text-gray-900 hover:text-gray-600 transition">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ export default function Onlineconsultation() {
 
       <div className="flex justify-between items-end mt-2">
         <div className="flex flex-col">
-          <span className="text-gray-900 font-medium text-[21px] absolute top-6 w-full">
+          <span className="text-gray-900 font-medium text-[16px] md:text-[21px] absolute top-6 w-full">
             Online Consultations
           </span>
 
@@ -43,7 +43,6 @@ export default function Onlineconsultation() {
             96
           </span>
 
-          {/* Indicator Badge */}
           <div className="flex items-center space-x-2 mt-4">
             <div className="w-6 h-6 bg-red-500/10 text-red-500 rounded-full flex items-center justify-center">
               <svg
@@ -64,7 +63,7 @@ export default function Onlineconsultation() {
         </div>
 
         {/* Right Column: Sparkline Area Chart */}
-        <div className="w-40 h-34 shrink-0 mb-1 mt-8">
+        <div className="w-25 h-30 md:w-40 md:h-34 shrink-0 mb-1 mt-8">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={chartData}

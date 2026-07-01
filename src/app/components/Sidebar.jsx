@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter, usePathname } from "next/navigation"; // 1. Added usePathname
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
@@ -259,7 +259,7 @@ export default function Sidebar() {
     <motion.section
       animate={{ width: isOpen ? "216px" : "70px" }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="px-4 py-6 border-r border-b border-[#E0E0E0] h-full box-border select-none"
+      className="px-4 py-6  border-r border-b border-[#E0E0E0] h-full box-border select-none"
     >
       {/* Sidebar Toggle Control Header */}
       <div className="flex items-center justify-between mb-4 h-6">

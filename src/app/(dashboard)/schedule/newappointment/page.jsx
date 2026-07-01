@@ -3,9 +3,9 @@ import React from "react";
 export default function NewAppointment({ onClose }) {
   return (
     <>
-      <section className="w-190 bg-white mx-auto pb-9 rounded-[5px] my-10">
-        <div className="flex justify-between items-center px-6 bg-[#0000AC] rounded-t-[5px] h-20.5">
-          <span className="text-[22px] font-bold text-white">
+      <section className="w-[95%] md:w-170 bg-white mx-auto pb-9 rounded-[5px] my-10">
+        <div className="flex justify-between items-center px-4 md:px-6 bg-[#0000AC] rounded-t-[5px] h-20.5">
+          <span className="text-[18px] md:text-[22px] font-bold text-white">
             New Appointment
           </span>
           <span onClick={onClose}>
@@ -26,7 +26,7 @@ export default function NewAppointment({ onClose }) {
           </span>
         </div>
 
-        <div className="p-8 flex justify-around items-start text-center">
+        <div className="p-4 md:p-8 flex flex-col md:flex-row justify-around items-center md:items-start text-center gap-8 md:gap-0">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,8 +100,8 @@ export default function NewAppointment({ onClose }) {
             </span>
           </div>
         </div>
-        <section className="p-8">
-          <div className="flex justify-between items-center">
+        <section className="px-4 py-8 md:p-8">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
             <label
               htmlFor="surname"
               className="text-[18px] font-normal text-[#4F4F4F]"
@@ -109,12 +109,12 @@ export default function NewAppointment({ onClose }) {
               Patients
             </label>
             <input
-              className="border border-[#E0E0E0] w-115.5 h-10.25 my-4 rounded-[5px]"
+              className="border border-[#E0E0E0] w-full md:w-115.5 h-10.25 my-2 md:my-4 rounded-[5px]"
               type="text"
               name="patients"
             />
           </div>
-          <div className="flex justify-between items-center ">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
             <label
               htmlFor="notes"
               className="text-[18px] font-normal text-[#4F4F4F]"
@@ -124,77 +124,77 @@ export default function NewAppointment({ onClose }) {
             <textarea
               name="visit"
               id=""
-              className="border border-[#E0E0E0] w-115.5 h-35.25 my-4 rounded-[5px]"
+              className="border border-[#E0E0E0] w-full md:w-115.5 h-35.25 my-2 md:my-4 rounded-[5px]"
             ></textarea>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
             <label
               htmlFor="sex"
               className="text-[18px] font-normal text-[#4F4F4F]"
             >
               Appointment Status
             </label>
-            <div className="w-115.5  my-8">
-              <span className="w-20.74 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+            <div className="w-full md:w-115.5 my-2 md:my-8 flex flex-wrap gap-2 md:gap-0">
+              <span className="inline-block text-center h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px] text-[16px] py-3 px-4 capitalize md:me-4">
                 Confirmation required
               </span>
-              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="inline-block text-center h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px] text-[16px] py-3 px-4 capitalize md:me-4">
                 Confirmed
               </span>
             </div>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
             <label
               htmlFor="sex"
               className="text-[18px] font-normal text-[#4F4F4F]"
             >
               Duration
             </label>
-            <div className="w-115.5 my-8">
-              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+            <div className="w-full md:w-115.5 my-2 md:my-8 flex flex-wrap gap-2 md:gap-0">
+              <span className="inline-block text-center w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px] text-[16px] py-3 px-4 capitalize md:me-4">
                 10
               </span>
-              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="inline-block text-center w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px] text-[16px] py-3 px-4 capitalize md:me-4">
                 30
               </span>
-              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="inline-block text-center w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px] text-[16px] py-3 px-4 capitalize md:me-4">
                 45
               </span>
-              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="inline-block text-center w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px] text-[16px] py-3 px-4 capitalize md:me-4">
                 60
               </span>
-              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="inline-block text-center w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px] text-[16px] py-3 px-4 capitalize md:me-4">
                 90
               </span>
-              <span className="w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="inline-block text-center w-20.25 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px] text-[16px] py-3 px-4 capitalize md:me-4">
                 120
               </span>
             </div>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
             <label
               htmlFor="sex"
               className="text-[18px] font-normal text-[#4F4F4F]"
             >
               Appointment type
             </label>
-            <div className="w-115.5 my-8">
-              <span className="w-20.75 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+            <div className="w-full md:w-115.5 my-2 md:my-8 flex flex-wrap gap-2 md:gap-0">
+              <span className="inline-block text-center h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px] text-[16px] py-3 px-4 capitalize md:me-4">
                 first time
               </span>
-              <span className="w-20.75 h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+              <span className="inline-block text-center h-11 cursor-pointer hover:bg-[#0000AC] bg-[#FAFAFA] hover:text-white rounded-[5px] text-[16px] py-3 px-4 capitalize md:me-4">
                 follow up visit
               </span>
             </div>
           </div>
-          <div className="flex justify-start gap-22 items-center">
+          <div className="flex flex-col md:flex-row md:justify-start gap-3 md:gap-22 items-start md:items-center">
             <label
               htmlFor="sex"
               className="text-[18px] font-normal text-[#4F4F4F]"
             >
               Online consultation
             </label>
-            <div className="flex items-center gap-2 border border-[#eb5757] rounded-[5px] px-4 py-2 cursor-pointer bg-[#FAFAFA] text-[#EB5757] my-8 w-fit">
+            <div className="flex items-center gap-2 border border-[#eb5757] rounded-[5px] px-4 py-2 cursor-pointer bg-[#FAFAFA] text-[#EB5757] my-2 md:my-8 w-fit">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -214,7 +214,7 @@ export default function NewAppointment({ onClose }) {
           </div>
         </section>
 
-        <div className="p-8">
+        <div className="px-4 py-8 md:p-8">
           <div className="flex items-center gap-2 pb-2.5">
             <span>
               <svg
@@ -234,19 +234,19 @@ export default function NewAppointment({ onClose }) {
             </span>
             <span className="font-bold text-[18px]">Send notifications</span>
           </div>
-          <p className="text-16 text-[#333333] w-162.5">
+          <p className="text-16 text-[#333333] w-full md:w-162.5">
             Appointment confirmation and reminder messages will be automatically
             sent to clinic SMS notification settings.
           </p>
         </div>
-        <div className="flex justify-end gap-4 me-16 ">
-          <button className="font-semibold capitalize cursor-pointer">
+        <div className="flex flex-col sm:flex-row justify-end gap-4 px-4 sm:me-16 sm:px-0">
+          <button className="font-semibold capitalize cursor-pointer order-3 sm:order-1">
             cancel
           </button>
-          <button className="w-44 h-11 cursor-pointer bg-[#0000AC]  text-white rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+          <button className="w-full sm:w-44 h-11 cursor-pointer bg-[#0000AC] text-white rounded-[5px] text-[16px] py-3 px-4 capitalize sm:me-4 order-1 sm:order-2">
             begin Appointment
           </button>
-          <button className="w-16.75 px-auto h-11 cursor-pointer border border-[#0000AC]  text-[#0000ac] rounded-[5px]  text-[16px] py-3 px-4 capitalize me-4">
+          <button className="w-full sm:w-16.75 h-11 cursor-pointer border border-[#0000AC] text-[#0000ac] rounded-[5px] text-[16px] py-3 px-4 capitalize sm:me-4 order-2 sm:order-3">
             save
           </button>
         </div>

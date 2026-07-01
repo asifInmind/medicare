@@ -12,16 +12,16 @@ export default function Schedule() {
   return (
     <>
       <Path path={pathname} />
-      <div className="h-18 w-full flex justify-between  bg-white rounded-[5px] px-4 my-2 mb-8 items-center">
+      <div className=" h-auto  py-5 md:h-18 w-full flex-col items-start md:flex-row gap-4 flex md:justify-between bg-white rounded-[5px] px-4 my-2 md:items-center">
         <div>
-          <p className="font-medium text-[21px]">
+          <p className="font-medium md:text-[14px] lg:text-[21px]">
             Weekly schedule from 25th to 1st November 2022
           </p>
         </div>
-        <div className="flex gap-5 items-center">
+        <div className="flex gap-2 md:gap-5  items-center">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="w-12 h-12 border border-[#E0E0E0] cursor-pointer rounded-[5px] flex justify-center items-center hover:bg-gray-50 transition-colors"
+            className="w-9 h-9 md:w-12 md:h-12 border border-[#E0E0E0] cursor-pointer rounded-[5px] flex justify-center items-center hover:bg-gray-50 transition-colors"
             aria-label="Open new appointment"
           >
             <svg
@@ -40,7 +40,7 @@ export default function Schedule() {
             </svg>
           </button>
 
-          <span className="w-12 h-12 border cursor-pointer border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
+          <span className="w-9 h-9 md:w-12 md:h-12 border cursor-pointer border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -58,7 +58,7 @@ export default function Schedule() {
           </span>
 
           <span
-            className="w-12 h-12 border cursor-pointer border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
+            className="w-9 h-9 md:w-12 md:h-12 border cursor-pointer border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
             onClick={() => window.print()}
           >
             <svg
@@ -77,7 +77,7 @@ export default function Schedule() {
             </svg>
           </span>
 
-          <span className="w-12 h-12 border cursor-pointer border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
+          <span className="w-9 h-9 md:w-12 md:h-12 border cursor-pointer border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -96,7 +96,7 @@ export default function Schedule() {
         </div>
       </div>
 
-      <section className="w-270 mx-auto ">
+      <section className="w-full mx-auto ">
         <WeeklyScheduleGrid />
       </section>
 

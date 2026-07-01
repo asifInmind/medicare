@@ -15,7 +15,7 @@ const chartData = [
 
 export default function OfflineConsultationsCard() {
   return (
-    <div className="relative w-full max-w-sm bg-white rounded-xl border border-gray-100 p-6 select-none">
+    <div className="relative w-full  bg-white rounded-xl border border-gray-100 p-6 select-none">
       {/* Top Options Button */}
       <button className="absolute top-6 right-6 text-gray-900 hover:text-gray-600 transition">
         <svg
@@ -38,7 +38,7 @@ export default function OfflineConsultationsCard() {
       <div className="flex justify-between items-end mt-2">
         {/* Left Column: Title -> Value -> Indicator Badge */}
         <div className="flex flex-col">
-          <span className="text-gray-900 font-medium  top-6 absolute text-[21px]">
+          <span className="text-gray-900 font-medium text-[16px] top-6 absolute md:text-[21px]">
             Offline Consultations
           </span>
 
@@ -67,7 +67,7 @@ export default function OfflineConsultationsCard() {
         </div>
 
         {/* Right Column: Sparkline Area Chart with Blue Shading */}
-        <div className="w-40 h-24 shrink-0 mb-1  mt-14">
+        <div className=" w-25 h-30 md:w-40 md:h-24 shrink-0 mb-1  mt-14">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={chartData}

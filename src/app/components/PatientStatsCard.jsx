@@ -12,7 +12,7 @@ const totalPatients = data.reduce((sum, item) => sum + item.value, 0);
 
 export default function PatientStatsCard() {
   return (
-    <div className="relative w-full max-w-sm bg-white rounded-xl border-gray-100 p-6  select-none">
+    <div className="relative w-full  bg-white rounded-xl p-4 md:p-6  select-none">
       <div className="flex justify-between ">
         <div className="flex flex-col space-y-4">
           <span className="text-gray-900 font-medium text-[22px]">
@@ -48,8 +48,9 @@ export default function PatientStatsCard() {
                 data={data}
                 cx="50%"
                 cy="50%"
-                innerRadius={50}
-                outerRadius={65}
+                // Using percentages scales the donut size relative to container bounds!
+                innerRadius="60%"
+                outerRadius="80%"
                 paddingAngle={0}
                 dataKey="value"
                 startAngle={90}

@@ -96,15 +96,15 @@ export default function Page() {
   return (
     <>
       <Path path={pathname} />
-      <div className="h-18 w-full flex justify-between bg-white rounded-[5px] px-4 my-2 items-center">
+      <div className=" h-auto  py-5 md:h-18 w-full flex-col items-start md:flex-row gap-4 flex md:justify-between bg-white rounded-[5px] px-4 my-2 md:items-center">
         <div>
           <p className="font-medium text-[21px]">
             Total patients <span>(349)</span>
           </p>
         </div>
-        <div className="flex gap-5 items-center">
+        <div className="flex gap-2 md:gap-5 items-center">
           <Link
-            className="w-12 h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
+            className="w-9 h-9 md:w-12 md:h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
             href={"/patients/addpatients"}
           >
             <svg
@@ -123,7 +123,7 @@ export default function Page() {
             </svg>
           </Link>
 
-          <span className="w-12 h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
+          <span className="w-9 h-9 md:w-12 md:h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -139,7 +139,7 @@ export default function Page() {
               />
             </svg>
           </span>
-          <span className="w-12 h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
+          <span className="w-9 h-9 md:w-12 md:h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -155,7 +155,7 @@ export default function Page() {
               />
             </svg>
           </span>
-          <span className="w-12 h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
+          <span className="w-9 h-9 md:w-12 md:h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -173,8 +173,8 @@ export default function Page() {
           </span>
         </div>
       </div>
-      <div>
-        <table className="w-full text-center bg-white">
+      <div className="w-full overflow-x-auto">
+        <table className="min-w-175 w-full text-center bg-white">
           <thead className="h-16 border-b border-[#E0E0E0]">
             <tr>
               <th className="text-[17px] text-[#828282] font-normal capitalize">
@@ -235,7 +235,7 @@ export default function Page() {
       </div>
 
       {/* PAGINATION SECTION */}
-      <div className="w-full flex justify-end items-center mt-6 mb-4">
+      <div className=" w-full flex justify-end items-center mx-auto mt-6 mb-4">
         <div className="flex items-center gap-6 text-[16px] text-[#828282] select-none bg-transparent px-4 py-3 rounded-[5px]">
           {/* Prev Button */}
           <button
