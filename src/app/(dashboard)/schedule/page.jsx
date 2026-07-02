@@ -4,10 +4,12 @@ import Path from "../../components/Path";
 import { usePathname } from "next/navigation";
 import WeeklyScheduleGrid from "../../components/WeeklyScheduleGrid";
 import NewAppointment from "./newappointment/page";
+import Filters from "./_components/Filters";
 
 export default function Schedule() {
   const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
     <>
@@ -40,7 +42,10 @@ export default function Schedule() {
             </svg>
           </button>
 
-          <span className="w-9 h-9 md:w-12 md:h-12 border cursor-pointer border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
+          <span
+            className="w-9 h-9 md:w-12 md:h-12 border cursor-pointer border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
+            onClick={() => setIsFilterOpen(true)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -109,6 +114,18 @@ export default function Schedule() {
 
           <div className="my-auto max-w-full">
             <NewAppointment onClose={() => setIsModalOpen(false)} />
+          </div>
+        </div>
+      )}
+      {isFilterOpen && (
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-[1px] p-4 sm:p-6 md:p-10 flex justify-center items-start">
+          <div
+            className="fixed inset-0 -z-10"
+            onClick={() => setIsModalOpen(false)}
+          />
+
+          <div className="my-auto max-w-full">
+            <Filters onClose={() => setIsFilterOpen(false)} />
           </div>
         </div>
       )}

@@ -4,10 +4,21 @@ import Path from "../../components/Path";
 import { m } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import Filters from "./_components/Filters";
+import Actions from "./_components/Actions";
+import Search from "./_components/Search";
+import { AnimatePresence } from "framer-motion";
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 41; // Derived from your design image
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const [activePatientId, setActivePatientId] = useState(null);
+  const viewPatientsActions = (id) => {
+    setActivePatientId((prevId) => (prevId === id ? null : id));
+  };
 
   const patientsData = [
     {
@@ -96,10 +107,22 @@ export default function Page() {
   return (
     <>
       <Path path={pathname} />
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-[1px] p-4 sm:p-6 md:p-10 flex justify-center items-start">
+          <div
+            className="fixed inset-0 -z-10"
+            onClick={() => setIsModalOpen(false)}
+          />
+
+          <div className="my-auto max-w-full">
+            <Filters onClose={() => setIsModalOpen(false)} />
+          </div>
+        </div>
+      )}
       <div className=" h-auto  py-5 md:h-18 w-full flex-col items-start md:flex-row gap-4 flex md:justify-between bg-white rounded-[5px] px-4 my-2 md:items-center">
         <div>
           <p className="font-medium text-[21px]">
-            Total patients <span>(349)</span>
+            Total patients <span>({patientsData.length})</span>
           </p>
         </div>
         <div className="flex gap-2 md:gap-5 items-center">
@@ -123,7 +146,10 @@ export default function Page() {
             </svg>
           </Link>
 
-          <span className="w-9 h-9 md:w-12 md:h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
+          <span
+            className="w-9 h-9 md:w-12 md:h-12 cursor-pointer border border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
+            onClick={() => setIsSearchOpen(!isSearchOpen)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -139,7 +165,10 @@ export default function Page() {
               />
             </svg>
           </span>
-          <span className="w-9 h-9 md:w-12 md:h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
+          <span
+            className="w-9 h-9 md:w-12 md:h-12 border cursor-pointer border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
+            onClick={() => setIsModalOpen(true)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -155,7 +184,7 @@ export default function Page() {
               />
             </svg>
           </span>
-          <span className="w-9 h-9 md:w-12 md:h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
+          <span className="w-9 h-9 md:w-12 md:h-12 cursor-pointer border border-[#E0E0E0] rounded-[5px] flex justify-center items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -173,6 +202,10 @@ export default function Page() {
           </span>
         </div>
       </div>
+
+      <AnimatePresence>
+        {isSearchOpen && <Search onClose={() => setIsSearchOpen(false)} />}
+      </AnimatePresence>
       <div className="w-full overflow-x-auto">
         <table className="min-w-175 w-full text-center bg-white">
           <thead className="h-16 border-b border-[#E0E0E0]">
@@ -199,7 +232,7 @@ export default function Page() {
           </thead>
           <tbody>
             {patientsData.map((patients) => (
-              <tr key={patients.id} className="h-16 text-center">
+              <tr key={patients.id} className="h-16 text-center relative">
                 <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
                   {patients.name}
                 </td>
@@ -225,9 +258,15 @@ export default function Page() {
                 <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
                   {patients.nextAppointment}
                 </td>
-                <td className="flex justify-center items-center h-16 cursor-pointer">
+                <td
+                  className="flex justify-center items-center h-16 cursor-pointer"
+                  onClick={() => viewPatientsActions(patients.id)}
+                >
                   {patients.options}
                 </td>
+                <span className="absolute z-10 right-18 top-6">
+                  {activePatientId === patients.id && <Actions />}
+                </span>
               </tr>
             ))}
           </tbody>

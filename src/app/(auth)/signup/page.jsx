@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import AuthUI from "../_components/AuthUI";
 
 export default function Signup() {
   return (
@@ -94,24 +95,7 @@ export default function Signup() {
             </p>
           </form>
         </div>
-        <div className="w-full lg:max-w-225 bg-[#0000AC] text-center">
-          <h1 className="font-bold text-[25px] text-white mt-12 mb-6">
-            ALL IN ONE DASHBOARD
-          </h1>
-          <Image
-            src={"/images/Patients.svg"}
-            alt="dashboard image"
-            width={100}
-            height={100}
-            className="w-127.5 h-98.75 mx-auto"
-          />
-          <p className="text-[25px] text-white font-normal my-12">
-            Keep track of all patient information in this section.
-          </p>
-          <button className="w-fit-content rounded-[5px] h-12 text-center py-3 my-3.5 px-10 text-[#0000AC] bg-white">
-            Learn more
-          </button>
-        </div>
+        <AuthUI />
       </section>
     </>
   );

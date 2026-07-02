@@ -1,18 +1,19 @@
 "use client";
-import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Loader from "./Loader";
-import { div } from "framer-motion/client";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-
   const [isNavigating, setIsNavigating] = useState(false);
+
   const handleNavigation = () => {
     setIsNavigating(true);
     router.push("/signup");
+  };
+  const showMessages = () => {
+    router.push("/messages");
   };
 
   const d = new Date();
@@ -20,19 +21,9 @@ export default function Header() {
 
   return (
     <>
-      <header className="h-23.5 border-b bg-white border-[#E0E0E0] flex justify-between md:justify-start items-center gap-2 px-4 md:px-0">
-        <section className="md:border-r md:border-b border-[#E0E0E0] w-40 md:w-54 shrink-0 h-23.5 flex justify-center items-center">
-          <Image
-            src={"/icons/logo.svg"}
-            alt="website logo"
-            width={100}
-            height={100}
-            className="w-[88%]"
-          />
-        </section>
-
-        <section className="hidden lg:flex justify-between w-full px-5 gap-3">
-          <div className=" w-full lg:w-90 xl:w-138 my-auto">
+      <header className="h-23.5 border-b bg-white border-[#E0E0E0] flex justify-between md:justify-start items-center gap-2 px-4 md:px-5 w-full">
+        <section className="hidden lg:flex justify-between w-full gap-3">
+          <div className="w-full lg:w-90 xl:w-138 my-auto">
             <div className="border border-[#E0E0E0] rounded-md flex justify-between items-center px-2 h-10.25">
               <input
                 type="search"
@@ -62,11 +53,11 @@ export default function Header() {
               <span className="text-[16px] font-normal">Jhon</span>
               <span className="font-semibold text-[16px]">General doctor</span>
             </div>
-            <div className="h-10.25 border border-[#E0E0E0] rounded-lg text-[16px] flex justify-center items-center p-2">
+            <div className="h-10.25 border border-[#E0E0E0] rounded-lg text-[16px] flex justify-center items-center p-2 whitespace-nowrap">
               {formattedDate}
             </div>
             <div className="flex gap-6">
-              <span className="cursor-pointer">
+              <span className="cursor-pointer" onClick={showMessages}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -98,16 +89,14 @@ export default function Header() {
                   />
                 </svg>
               </span>
-
-              <span
-                className="cursor-pointer relative"
+              <button
+                className="cursor-pointer relative bg-transparent border-0 p-0"
                 onClick={handleNavigation}
                 disabled={isNavigating}
               >
                 {isNavigating && (
                   <div className="absolute -top-3.5 -right-4">
-                    {" "}
-                    <Loader />
+                    <Loader width={"16px"} border={"2px"} />
                   </div>
                 )}
                 <svg
@@ -116,7 +105,7 @@ export default function Header() {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="size-6 disabled:hidden "
+                  className="size-6"
                 >
                   <path
                     strokeLinecap="round"
@@ -124,11 +113,12 @@ export default function Header() {
                     d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
                   />
                 </svg>
-              </span>
+              </button>
             </div>
           </div>
         </section>
 
+        {/* Mobile menu trigger */}
         <button
           onClick={() => setIsOpen(true)}
           className="block lg:hidden p-2 absolute right-4 text-[#1D1D1D] focus:outline-none"
@@ -150,23 +140,14 @@ export default function Header() {
         </button>
       </header>
 
-      <div
-        className={`fixed inset-0 z-50 transition-visibility duration-300 ${
-          isOpen ? "visible" : "invisible"
-        }`}
-      >
+      {/* Mobile Sidebar overlay */}
+      <div className={`fixed inset-0 z-50 ${isOpen ? "visible" : "invisible"}`}>
         <div
-          className={`absolute inset-0 bg-black transition-opacity duration-300 ${
-            isOpen ? "opacity-40" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-black transition-opacity duration-300 ${isOpen ? "opacity-40" : "opacity-0"}`}
           onClick={() => setIsOpen(false)}
         />
-
-        {/* Menu content panel */}
         <div
-          className={`absolute right-0 top-0 h-full w-72 bg-white shadow-xl flex flex-col p-6 transition-transform duration-300 ${
-            isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`absolute right-0 top-0 h-full w-72 bg-white shadow-xl flex flex-col p-6 transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"}`}
         >
           <div className="flex justify-end mb-6">
             <button onClick={() => setIsOpen(false)} className="text-gray-500">
@@ -186,16 +167,13 @@ export default function Header() {
               </svg>
             </button>
           </div>
-
           <div className="flex flex-col items-start border-b border-[#E0E0E0] pb-4 mb-4">
             <span className="text-[16px] font-normal text-gray-600">Jhon</span>
             <span className="font-semibold text-[18px]">General doctor</span>
           </div>
-
           <div className="border border-[#E0E0E0] rounded-lg text-[14px] px-3 py-2 text-center text-gray-700 bg-gray-50 mb-6">
             {formattedDate}
           </div>
-
           <div className="border border-[#E0E0E0] rounded-md flex justify-between items-center px-2 h-10.25 mb-8">
             <input
               type="search"
@@ -219,8 +197,8 @@ export default function Header() {
               </svg>
             </span>
           </div>
-
           <div className="mt-auto flex justify-around border-t border-[#E0E0E0] pt-6">
+            {/* Icons inside mobile sidebar panel */}
             <span className="cursor-pointer text-gray-600 hover:text-black">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

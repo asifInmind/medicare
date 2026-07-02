@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Loader() {
+export default function Loader({ width, border }) {
   return (
     <div className="flex items-center justify-center p-4">
       <style>{`
@@ -21,7 +21,7 @@ export default function Loader() {
         }
       `}</style>
       <div
-        className="w-[20px] aspect-square rounded-full border-[2px] border-solid border-[#514b82]"
+        className={`w-${width} border-${border} aspect-square rounded-full border-solid border-[#514b82]`}
         style={{
           animation:
             "l20-1 0.8s infinite linear alternate, l20-2 1.6s infinite linear",

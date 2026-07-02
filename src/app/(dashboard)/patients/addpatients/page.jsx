@@ -1,9 +1,16 @@
 "use client";
 import React from "react";
 import Path from "../../../components/Path";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
+
 export default function Addpatients() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const backToPatients = () => {
+    router.push("/patients");
+  };
   return (
     <>
       <Path path={pathname} />
@@ -12,7 +19,10 @@ export default function Addpatients() {
           <p className="font-medium text-[21px] capitalize">add new patients</p>
         </div>
         <div className="flex gap-5 items-center w-full md:w-auto">
-          <button className="flex-1 md:flex-none md:w-19.25 h-10.25 px-5 flex justify-center items-center py-1 cursor-pointer text-center border border-[#0000AC] rounded-[5px] font-medium text-[16px]">
+          <button
+            className="flex-1 md:flex-none md:w-19.25 h-10.25 px-5 flex justify-center items-center py-1 cursor-pointer text-center border border-[#0000AC] rounded-[5px] font-medium text-[16px]"
+            onClick={backToPatients}
+          >
             cancel
           </button>
           <button className="flex-1 md:flex-none md:w-19.25 h-10.25 px-5 flex justify-center items-center py-1 cursor-pointer text-center text-white bg-[#0000AC] rounded-[5px] font-medium text-[16px]">
