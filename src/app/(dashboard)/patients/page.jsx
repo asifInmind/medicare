@@ -97,7 +97,6 @@ export default function Page() {
 
   const pathname = usePathname();
 
-  // Helper to handle page changing logic safely
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -119,33 +118,13 @@ export default function Page() {
           </div>
         </div>
       )}
-      <div className=" h-auto  py-5 md:h-18 w-full flex-col items-start md:flex-row gap-4 flex md:justify-between bg-white rounded-[5px] px-4 my-2 md:items-center">
+      <div className=" h-auto  py-5 md:h-18 w-full relative flex-col items-start md:flex-row gap-4 flex md:justify-between bg-white rounded-[5px] px-4 my-2 md:items-center">
         <div>
           <p className="font-medium text-[21px]">
             Total patients <span>({patientsData.length})</span>
           </p>
         </div>
         <div className="flex gap-2 md:gap-5 items-center">
-          <Link
-            className="w-9 h-9 md:w-12 md:h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
-            href={"/patients/addpatients"}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
-          </Link>
-
           <span
             className="w-9 h-9 md:w-12 md:h-12 cursor-pointer border border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
             onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -165,6 +144,25 @@ export default function Page() {
               />
             </svg>
           </span>
+          <Link
+            className="w-9 h-9 md:w-12 md:h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
+            href={"/patients/addpatients"}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+          </Link>
           <span
             className="w-9 h-9 md:w-12 md:h-12 border cursor-pointer border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
             onClick={() => setIsModalOpen(true)}
@@ -201,11 +199,13 @@ export default function Page() {
             </svg>
           </span>
         </div>
+        <div className="absolute right-0 w-50 bg-white -bottom-30  md:right-70  md:w-50 lg:w-105 xl:w-160 md:bottom-0">
+          <AnimatePresence>
+            {isSearchOpen && <Search onClose={() => setIsSearchOpen(false)} />}
+          </AnimatePresence>
+        </div>
       </div>
 
-      <AnimatePresence>
-        {isSearchOpen && <Search onClose={() => setIsSearchOpen(false)} />}
-      </AnimatePresence>
       <div className="w-full overflow-x-auto">
         <table className="min-w-175 w-full text-center bg-white">
           <thead className="h-16 border-b border-[#E0E0E0]">
@@ -243,10 +243,10 @@ export default function Page() {
                   <span
                     className={`${
                       patients.status === "recovered"
-                        ? "bg-[#27AE60BF] text-[#005f28]"
+                        ? "bg-[#27ae5f54] text-[#005f28]"
                         : patients.status === "on treatment"
-                          ? "bg-[#EB5757A6] text-[#730404]"
-                          : "bg-[#2F80EDA6] text-[#002453]"
+                          ? "bg-[#eb575754] text-[#730404]"
+                          : "bg-[#2f81ed54] text-[#002453]"
                     } rounded-full w-full block py-1 px-3 `}
                   >
                     {patients.status}

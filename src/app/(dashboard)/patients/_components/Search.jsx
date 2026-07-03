@@ -10,7 +10,7 @@ export default function Search() {
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.15 }}
         //   className="fixed inset-0 bg-white/90 backdrop-blur-sm z-50 flex items-center justify-center"
-        className=" h-auto  py-5 md:h-14 w-full flex-col items-start md:flex-row gap-4 flex md:justify-between bg-white rounded-[5px] shadow my-2 md:items-center"
+        className=" h-auto  py-5 md:h-14 w-full border border-gray-200 bg-white z-50  flex-col items-start md:flex-row gap-4 flex md:justify-between  rounded-[5px] shadow my-2 md:items-center"
       >
         <div className="w-full">
           <input
@@ -18,7 +18,7 @@ export default function Search() {
             name="search"
             id=""
             placeholder="Search here..."
-            className="py-3.5 px-3 w-full "
+            className="py-3.5 px-3 w-full bg-white outline-none text-[15px]  "
           />
         </div>
         {/* <div className="flex gap-2 md:gap-5 items-center">

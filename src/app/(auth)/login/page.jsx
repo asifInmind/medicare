@@ -42,7 +42,12 @@ export default function Login() {
               placeholder="**********"
               className="w-full py-4 px-1 border-b border-[#828282] bg-none outline-0"
             />
-
+            <p className="text-right pt-5">
+              <Link href={"/forgotpassword"} className="text-blue-800">
+                {" "}
+                Forgot Password ?
+              </Link>
+            </p>
             <button className="font-normal text-[16px] bg-[#0000AC] text-white py-3.75 px-10.25 w-full rounded-[10px] mt-6 cursor-pointer">
               submit
             </button>
