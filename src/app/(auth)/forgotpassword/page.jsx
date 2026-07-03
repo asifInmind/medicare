@@ -7,6 +7,7 @@ import Link from "next/link";
 import AuthUI from "../_components/AuthUI";
 export default function Forgot() {
   const active = true;
+  // const active = false;
   return (
     <>
       <section className="flex flex-col lg:flex-row justify-center items-start gap-0">

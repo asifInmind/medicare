@@ -125,25 +125,43 @@ export default function Page() {
           </p>
         </div>
         <div className="flex gap-2 md:gap-5 items-center">
-          <span
-            className="w-9 h-9 md:w-12 md:h-12 cursor-pointer border border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="size-6"
+          <div className="flex items-center rounded-[5px] border border-gray-200">
+            <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out flex items-center
+          ${
+            isSearchOpen
+              ? "w-48 md:w-64 opacity-100 mr-2"
+              : "w-0 opacity-0 mr-0"
+          }`}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              <input
+                type="text"
+                placeholder="Search here..."
+                className="w-full h-9 md:h-12 px-3 text-sm   focus:outline-none focus:border-gray-500"
               />
-            </svg>
-          </span>
+            </div>
+
+            {/* Search Icon Button */}
+            <span
+              className="w-9 h-9 md:w-12 md:h-12 cursor-pointer   flex justify-center items-center shrink-0"
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+            </span>
+          </div>
           <Link
             className="w-9 h-9 md:w-12 md:h-12 border border-[#E0E0E0] rounded-[5px] flex justify-center items-center"
             href={"/patients/addpatients"}
@@ -199,11 +217,11 @@ export default function Page() {
             </svg>
           </span>
         </div>
-        <div className="absolute right-0 w-50 bg-white -bottom-30  md:right-70  md:w-50 lg:w-105 xl:w-160 md:bottom-0">
+        {/* <div className="absolute right-0 w-50 bg-white -bottom-30  md:right-70  md:w-50 lg:w-105 xl:w-160 md:bottom-0">
           <AnimatePresence>
             {isSearchOpen && <Search onClose={() => setIsSearchOpen(false)} />}
           </AnimatePresence>
-        </div>
+        </div> */}
       </div>
 
       <div className="w-full overflow-x-auto">
