@@ -22,7 +22,6 @@ export default function Dashboard() {
         <Path path={path} />
       </div>
 
-      {/* TOP CARDS GRID - 1 column on mobile, 2 columns on tablet, 3 columns on desktop/laptop */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div className="bg-white rounded-lg h-57">
           <OfflineConsultationsCard />
@@ -30,7 +29,7 @@ export default function Dashboard() {
         <div className="bg-white rounded-lg h-57">
           <Onlineconsultation />
         </div>
-        {/* Takes up full width on medium screens to keep a balanced 2x2 grid shape before hitting 3 columns */}
+
         <div className="bg-white rounded-lg h-57 md:col-span-2 lg:col-span-1">
           <PatientStatsCard />
         </div>
@@ -48,9 +47,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* BOTTOM SECTIONS GRID - Stacks vertically on mobile/tablet, expands side-by-side on lg viewports */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 py-4">
-        {/* Task Box - Full width on small/medium screens, takes 2 columns on wide layouts */}
         <div className="lg:col-span-2 bg-white rounded-lg h-152 p-4 relative">
           <div className="flex justify-between">
             <h2 className="font-bold text-[15px]">Task</h2>

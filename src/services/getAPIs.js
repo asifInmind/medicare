@@ -1,22 +1,25 @@
 const NEXT_PUBLIC_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
+// patients related apis collections
+// =========================================================================starts here
 export async function getPatients() {
   const response = await fetch(`${NEXT_PUBLIC_API_BASE_URL}/patients`);
   if (!response.ok) throw new Error("Network response was not ok");
   return response.json();
 }
 
-export async function getFilteredPatients(filters = {}) {
+export async function fetchWithFilters(endpoint, filters = {}) {
   const params = new URLSearchParams();
+
   Object.entries(filters).forEach(([key, value]) => {
-    if (value) {
+    if (value !== undefined && value !== null && value !== "") {
       params.append(key, value);
     }
   });
-  const url = `${NEXT_PUBLIC_API_BASE_URL}/patients?${params.toString()}`;
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/${endpoint}?${params.toString()}`;
 
   const response = await fetch(url);
-  if (!response.ok) throw new Error("Failed to fetch filtered data");
+  if (!response.ok) throw new Error(`Failed to fetch data from ${endpoint}`);
 
   return response.json();
 }
@@ -44,5 +47,21 @@ export async function deletePatientById(id) {
 
   if (!response.ok) throw new Error("Failed to delete the record");
 
+  return response.json();
+}
+
+// =========================================================================ends here
+
+// apis for get task
+export async function getTask() {
+  const response = await fetch(`${NEXT_PUBLIC_API_BASE_URL}/task`);
+  if (!response.ok) throw new Error("Network response was not ok");
+  return response.json();
+}
+
+// api for get schedule
+export async function getAllSchedule() {
+  const response = await fetch(`${NEXT_PUBLIC_API_BASE_URL}/schedule`);
+  if (!response.ok) throw new Error("Network response was not good");
   return response.json();
 }
