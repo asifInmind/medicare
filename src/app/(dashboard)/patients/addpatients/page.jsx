@@ -3,11 +3,8 @@ import React from "react";
 import Path from "../../../components/Path";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-// Double check if your file is spelled StatusModel or StatusModal
+import { API_ROUTES } from "../../../../../src/config/api";
 import StatusModal from "../../../components/StatusModel";
-
-// 1. DEFINE YOUR API URL HERE (Or import it from an env/config file)
-const API_URL = "https://api.example.com/patients";
 
 export default function Addpatients() {
   const pathname = usePathname();
@@ -76,7 +73,7 @@ export default function Addpatients() {
 
     setLoading(true);
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(API_ROUTES.PATIENTS.ADD_PATIENTS, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,7 +108,6 @@ export default function Addpatients() {
         subMessage: "New Patients has been successfully added.",
       });
     } catch (error) {
-      console.error(error); // Good practice to log the actual error for debugging
       setModal({
         isOpen: true,
         type: "error",
@@ -128,7 +124,6 @@ export default function Addpatients() {
     <>
       <Path path={pathname} />
 
-      {/* 2. RENDER THE MODAL COMPONENT HERE SO IT ACTUALLY SHOWS UP */}
       <StatusModal
         isOpen={modal.isOpen}
         type={modal.type}
@@ -155,14 +150,13 @@ export default function Addpatients() {
             <button
               className="flex-1 md:flex-none md:w-19.25 h-10.25 px-5 flex justify-center items-center py-1 cursor-pointer text-center text-white bg-[#0000AC] rounded-[5px] font-medium text-[16px] disabled:opacity-50"
               type="submit"
-              disabled={loading} // Prevent multiple submissions
+              disabled={loading}
             >
               {loading ? "saving..." : "save"}
             </button>
           </div>
         </div>
 
-        {/* Rest of your input form section remains exactly the same */}
         <section className="w-full lg:w-195.75 mx-auto bg-white py-6 px-5 md:py-11 md:px-14.5">
           <div className="flex flex-col md:flex-row md:justify-between gap-2">
             <label

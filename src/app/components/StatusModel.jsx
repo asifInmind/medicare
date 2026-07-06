@@ -26,7 +26,7 @@ export default function StatusModal({
   const buttonText = isSuccess ? "Continue" : "Try Again";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+    <div className="fixed inset-0 z-1000 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
       <div className="w-full max-w-sm p-8 text-center bg-[#f8f8f8] rounded-3xl shadow-xl border border-gray-100 transition-all transform scale-100">
         <div className="flex justify-center mb-4">
           {isSuccess ? (

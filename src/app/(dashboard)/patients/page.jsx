@@ -7,20 +7,24 @@ import Link from "next/link";
 import Filters from "./_components/Filters";
 import Actions from "./_components/Actions";
 import Search from "./_components/Search";
-import { AnimatePresence } from "framer-motion";
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 41; // Derived from your design image
+  const totalPages = 41;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-
+  const [statusSection, setStatusSection] = useState(false);
   const [activePatientId, setActivePatientId] = useState(null);
+
   const viewPatientsActions = (id) => {
     setActivePatientId((prevId) => (prevId === id ? null : id));
   };
 
-  const patientsData = [
+  const showStatuses = (id) => {
+    setStatusSection((prevId) => (prevId === id ? null : id));
+  };
+
+  const [patientsData, setPatientsData] = useState([
     {
       id: 1,
       name: "mary joseph",
@@ -73,7 +77,7 @@ export default function Page() {
       id: 3,
       name: "mary joseph",
       diagnosis: "maleria",
-      status: "awating surgery",
+      status: "awaiting surgery",
       lastAppointment: "23/12/2023",
       nextAppointment: "25/12/2023",
       options: (
@@ -93,7 +97,20 @@ export default function Page() {
         </svg>
       ),
     },
-  ];
+  ]);
+
+  const statusStyles = {
+    recovered: "bg-[#27ae5f54] text-[#005f28]",
+    "on treatment": "bg-[#eb575754] text-[#730404]",
+    "awaiting surgery": "bg-[#2f81ed54] text-[#002453]",
+    "under observation": "bg-[#f2c94c54] text-[#7a5c00]",
+  };
+
+  const handleStatusChange = (id, newStatus) => {
+    setPatientsData((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, status: newStatus } : p)),
+    );
+  };
 
   const pathname = usePathname();
 
@@ -217,11 +234,6 @@ export default function Page() {
             </svg>
           </span>
         </div>
-        {/* <div className="absolute right-0 w-50 bg-white -bottom-30  md:right-70  md:w-50 lg:w-105 xl:w-160 md:bottom-0">
-          <AnimatePresence>
-            {isSearchOpen && <Search onClose={() => setIsSearchOpen(false)} />}
-          </AnimatePresence>
-        </div> */}
       </div>
 
       <div className="w-full overflow-x-auto">
@@ -250,26 +262,62 @@ export default function Page() {
           </thead>
           <tbody>
             {patientsData.map((patients) => (
-              <tr key={patients.id} className="h-16 text-center relative">
+              <tr
+                key={patients.id}
+                className="h-16 text-center relative border-b border-gray-100"
+              >
                 <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
                   {patients.name}
                 </td>
                 <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
                   {patients.diagnosis}
                 </td>
-                <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
-                  <span
-                    className={`${
-                      patients.status === "recovered"
-                        ? "bg-[#27ae5f54] text-[#005f28]"
-                        : patients.status === "on treatment"
-                          ? "bg-[#eb575754] text-[#730404]"
-                          : "bg-[#2f81ed54] text-[#002453]"
-                    } rounded-full w-full block py-1 px-3 `}
-                  >
-                    {patients.status}
-                  </span>
+
+                <td className="text-[17px] font-normal text-[#1D1D1D] capitalize px-4">
+                  <div className="relative inline-block w-full  mx-auto text-center">
+                    <div
+                      className={`${
+                        statusStyles[patients.status] ||
+                        "bg-[#2f81ed54] text-[#002453]"
+                      } rounded-full py-1 px-3 cursor-pointer select-none font-medium flex items-center justify-center gap-1`}
+                      onClick={() => showStatuses(patients.id)}
+                    >
+                      <span>{patients.status}</span>
+                      <span className="text-xs opacity-70">▼</span>
+                    </div>
+
+                    {statusSection === patients.id && (
+                      <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-xl z-50 overflow-hidden py-1 animate-fadeIn">
+                        <ul className="text-center text-sm text-gray-700">
+                          {[
+                            { value: "on treatment", label: "On Treatment" },
+                            { value: "recovered", label: "Recovered" },
+                            {
+                              value: "awaiting surgery",
+                              label: "Awaiting Surgery",
+                            },
+                            {
+                              value: "under observation",
+                              label: "Under Observation",
+                            },
+                          ].map((option) => (
+                            <li
+                              key={option.value}
+                              className="px-3 py-2 hover:bg-gray-50 cursor-pointer capitalize transition-colors duration-150 border-b border-gray-50 last:border-0"
+                              onClick={() => {
+                                handleStatusChange(patients.id, option.value);
+                                showStatuses(null);
+                              }}
+                            >
+                              {option.label}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
                 </td>
+
                 <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
                   {patients.lastAppointment}
                 </td>
@@ -282,9 +330,9 @@ export default function Page() {
                 >
                   {patients.options}
                 </td>
-                <span className="absolute z-10 right-18 top-6">
+                <td className="absolute z-10 right-18 top-6">
                   {activePatientId === patients.id && <Actions />}
-                </span>
+                </td>
               </tr>
             ))}
           </tbody>

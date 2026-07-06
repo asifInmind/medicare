@@ -5,6 +5,7 @@ import Link from "next/link";
 import AuthUI from "../_components/AuthUI";
 import Loading from "../../components/Loading";
 import StatusModal from "../../components/StatusModel";
+import { API_ROUTES } from "../../../config/api";
 const bcrypt = require("bcryptjs");
 
 export default function Signup() {
@@ -70,9 +71,8 @@ export default function Signup() {
 
     setLoading(true);
 
-    const API_URL = "http://localhost:3000/user";
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(API_ROUTES.AUTH.REGISTER, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -54,15 +54,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      className={`${mukta.variable} h-full antialiased font-sans`}
-    >
-      <body>{children}</body>
+    <html lang="en" className={`${mukta.variable} h-full antialiased font-sans`}>
+      <body suppressHydrationWarning={true}>
+        {children}
+      </body>
     </html>
   );
 }

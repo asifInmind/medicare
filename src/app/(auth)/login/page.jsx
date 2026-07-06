@@ -4,11 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import StatusModal from "../../components/StatusModel";
 import AuthUI from "../_components/AuthUI";
-
-// 1. IMPORT YOUR LOADING COMPONENT (Ensure the path matches your project structure)
+import { API_ROUTES } from "../../../config/api";
 import Loading from "../../components/Loading";
-
-// 2. DEFINE YOUR API URL (Ideally from environment variables)
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -43,8 +40,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const API_URL = "https://3000/api/login";
-      const response = await fetch(API_URL, {
+      const response = await fetch(API_ROUTES.AUTH.LOGIN, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,17 +60,12 @@ export default function Login() {
         return;
       }
 
-      // e.g., localStorage.setItem("token", data.token); or cookie management
-
       setModal({
         isOpen: true,
         type: "success",
         message: "SUCCESS",
         subMessage: "LoggedIn successfully.",
       });
-
-      // 4. OPTIONAL: Redirect your user after a successful login
-      // router.push("/dashboard"); (requires import from 'next/navigation')
     } catch (error) {
       setModal({
         isOpen: true,
