@@ -17,17 +17,17 @@ export default function Filters({ onClose, onFilterApplied }) {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const data = await getFilteredPatients(formData);
+    // try {
+    //   const data = await getFilteredPatients(formData);
 
-      if (onFilterApplied) onFilterApplied(data);
+    //   if (onFilterApplied) onFilterApplied(data);
 
-      if (onClose) onClose();
-    } catch (error) {
-      console.error("Filter request failed:", error);
-    }
+    //   if (onClose) onClose();
+    // } catch (error) {
+    //   console.error("Filter request failed:", error);
+    // }
   };
 
   return (

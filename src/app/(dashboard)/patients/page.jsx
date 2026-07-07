@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Path from "../../components/Path";
 import { m } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
@@ -14,14 +14,53 @@ export default function Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [statusSection, setStatusSection] = useState(false);
+  const [dropdownDirection, setDropdownDirection] = useState({});
   const [activePatientId, setActivePatientId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const statusRefs = useRef({});
 
   const viewPatientsActions = (id) => {
     setActivePatientId((prevId) => (prevId === id ? null : id));
   };
 
   const showStatuses = (id) => {
-    setStatusSection((prevId) => (prevId === id ? null : id));
+    if (statusSection === id) {
+      setStatusSection(null);
+      return;
+    }
+
+    const el = statusRefs.current[id];
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      const dropdownHeight = 180;
+      const spaceBelow = window.innerHeight - rect.bottom;
+      setDropdownDirection((prev) => ({
+        ...prev,
+        [id]: spaceBelow < dropdownHeight ? "up" : "down",
+      }));
+    }
+
+    setStatusSection(id);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (statusSection === false || statusSection === null) return;
+      const currentEl = statusRefs.current[statusSection];
+      if (currentEl && !currentEl.contains(event.target)) {
+        setStatusSection(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [statusSection]);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   const [patientsData, setPatientsData] = useState([
@@ -97,6 +136,102 @@ export default function Page() {
         </svg>
       ),
     },
+    {
+      id: 4,
+      name: "joseph",
+      diagnosis: "maleria",
+      status: "on treatment",
+      lastAppointment: "23/12/2023",
+      nextAppointment: "25/12/2023",
+      options: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+          />
+        </svg>
+      ),
+    },
+    {
+      id: 5,
+      name: "alex",
+      diagnosis: "maleria",
+      status: "recovered",
+      lastAppointment: "23/12/2023",
+      nextAppointment: "25/12/2023",
+      options: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+          />
+        </svg>
+      ),
+    },
+    {
+      id: 6,
+      name: "sarah",
+      diagnosis: "maleria",
+      status: "on treatment",
+      lastAppointment: "23/12/2023",
+      nextAppointment: "25/12/2023",
+      options: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+          />
+        </svg>
+      ),
+    },
+    {
+      id: 7,
+      name: "bilal",
+      diagnosis: "maleria",
+      status: "awaiting surgery",
+      lastAppointment: "23/12/2023",
+      nextAppointment: "25/12/2023",
+      options: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+          />
+        </svg>
+      ),
+    },
   ]);
 
   const statusStyles = {
@@ -120,6 +255,17 @@ export default function Page() {
     }
   };
 
+  const filteredPatients = patientsData.filter((patient) => {
+    const term = searchTerm.trim().toLowerCase();
+    if (!term) return true;
+
+    return (
+      patient.name.toLowerCase().includes(term) ||
+      patient.diagnosis.toLowerCase().includes(term) ||
+      patient.status.toLowerCase().includes(term)
+    );
+  });
+
   return (
     <>
       <Path path={pathname} />
@@ -138,7 +284,7 @@ export default function Page() {
       <div className=" h-auto  py-5 md:h-18 w-full relative flex-col items-start md:flex-row gap-4 flex md:justify-between bg-white rounded-[5px] px-4 my-2 md:items-center">
         <div>
           <p className="font-medium text-[21px]">
-            Total patients <span>({patientsData.length})</span>
+            Total patients <span>({filteredPatients.length})</span>
           </p>
         </div>
         <div className="flex gap-2 md:gap-5 items-center">
@@ -154,6 +300,8 @@ export default function Page() {
               <input
                 type="text"
                 placeholder="Search here..."
+                value={searchTerm}
+                onChange={handleSearch}
                 className="w-full h-9 md:h-12 px-3 text-sm   focus:outline-none focus:border-gray-500"
               />
             </div>
@@ -236,7 +384,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="w-full overflow-x-auto">
+      <div className="w-full overflow-x-auto scrollbar-none max-h-100">
         <table className="min-w-175 w-full text-center bg-white">
           <thead className="h-16 border-b border-[#E0E0E0]">
             <tr>
@@ -261,88 +409,117 @@ export default function Page() {
             </tr>
           </thead>
           <tbody>
-            {patientsData.map((patients) => (
-              <tr
-                key={patients.id}
-                className="h-16 text-center relative border-b border-gray-100"
-              >
-                <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
-                  {patients.name}
-                </td>
-                <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
-                  {patients.diagnosis}
-                </td>
-
-                <td className="text-[17px] font-normal text-[#1D1D1D] capitalize px-4">
-                  <div className="relative inline-block w-full  mx-auto text-center">
-                    <div
-                      className={`${
-                        statusStyles[patients.status] ||
-                        "bg-[#2f81ed54] text-[#002453]"
-                      } rounded-full py-1 px-3 cursor-pointer select-none font-medium flex items-center justify-center gap-1`}
-                      onClick={() => showStatuses(patients.id)}
-                    >
-                      <span>{patients.status}</span>
-                      <span className="text-xs opacity-70">▼</span>
-                    </div>
-
-                    {statusSection === patients.id && (
-                      <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-xl z-50 overflow-hidden py-1 animate-fadeIn">
-                        <ul className="text-center text-sm text-gray-700">
-                          {[
-                            { value: "on treatment", label: "On Treatment" },
-                            { value: "recovered", label: "Recovered" },
-                            {
-                              value: "awaiting surgery",
-                              label: "Awaiting Surgery",
-                            },
-                            {
-                              value: "under observation",
-                              label: "Under Observation",
-                            },
-                          ].map((option) => (
-                            <li
-                              key={option.value}
-                              className="px-3 py-2 hover:bg-gray-50 cursor-pointer capitalize transition-colors duration-150 border-b border-gray-50 last:border-0"
-                              onClick={() => {
-                                handleStatusChange(patients.id, option.value);
-                                showStatuses(null);
-                              }}
-                            >
-                              {option.label}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                </td>
-
-                <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
-                  {patients.lastAppointment}
-                </td>
-                <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
-                  {patients.nextAppointment}
-                </td>
+            {filteredPatients.length === 0 ? (
+              <tr>
                 <td
-                  className="flex justify-center items-center h-16 cursor-pointer"
-                  onClick={() => viewPatientsActions(patients.id)}
+                  colSpan={6}
+                  className="h-16 text-center text-[15px] text-[#828282]"
                 >
-                  {patients.options}
-                </td>
-                <td className="absolute z-10 right-18 top-6">
-                  {activePatientId === patients.id && <Actions />}
+                  No patients match your search.
                 </td>
               </tr>
-            ))}
+            ) : (
+              filteredPatients.map((patients) => (
+                <tr
+                  key={patients.id}
+                  className="h-16 text-center relative border-b border-gray-100"
+                >
+                  <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
+                    {patients.name}
+                  </td>
+                  <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
+                    {patients.diagnosis}
+                  </td>
+
+                  <td className="text-[17px] font-normal text-[#1D1D1D] capitalize px-4">
+                    <div
+                      ref={(el) => (statusRefs.current[patients.id] = el)}
+                      className="relative inline-block w-45  mx-auto text-center"
+                    >
+                      <div
+                        className={`${
+                          statusStyles[patients.status] ||
+                          "bg-[#2f81ed54] text-[#002453]"
+                        } rounded-full py-1 px-3 cursor-pointer select-none font-medium flex items-center justify-center gap-1`}
+                        onClick={() => showStatuses(patients.id)}
+                      >
+                        <span>{patients.status}</span>
+                        {/* <span className="text-xs opacity-70">▼</span> */}
+                      </div>
+
+                      {statusSection === patients.id && (
+                        <div
+                          className={`absolute left-0 right-0 bg-white border border-gray-200 rounded-xl w-45 shadow-xl z-50 overflow-hidden py-1 animate-fadeIn ${
+                            dropdownDirection[patients.id] === "up"
+                              ? "bottom-full mb-1"
+                              : "top-full mt-1"
+                          }`}
+                        >
+                          <ul className="text-center text-sm text-gray-700">
+                            {[
+                              { value: "on treatment", label: "On Treatment" },
+                              { value: "recovered", label: "Recovered" },
+                              {
+                                value: "awaiting surgery",
+                                label: "Awaiting Surgery",
+                              },
+                              {
+                                value: "under observation",
+                                label: "Under Observation",
+                              },
+                            ].map((option) => (
+                              <li
+                                key={option.value}
+                                className="px-3 py-2 hover:bg-gray-50 cursor-pointer capitalize transition-colors duration-150 border-b border-gray-50 last:border-0"
+                                onClick={() => {
+                                  handleStatusChange(patients.id, option.value);
+                                  showStatuses(null);
+                                }}
+                              >
+                                {option.label}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </td>
+
+                  <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
+                    {patients.lastAppointment}
+                  </td>
+                  <td className="text-[17px] font-normal text-[#1D1D1D] capitalize">
+                    {patients.nextAppointment}
+                  </td>
+                  <td
+                    className="flex justify-center items-center h-16 cursor-pointer"
+                    onClick={() => viewPatientsActions(patients.id)}
+                  >
+                    {patients.options}
+                  </td>
+                  <td className="absolute z-10 right-18 top-6">
+                    {activePatientId === patients.id && (
+                      <Actions
+                        id={patients.id}
+                        onClose={() => setActivePatientId(null)}
+                        onDeleteSuccess={(deletedId) => {
+                          setPatientsData((prev) =>
+                            prev.filter((p) => p.id !== deletedId),
+                          );
+                          setActivePatientId(null);
+                        }}
+                      />
+                    )}
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
 
-      {/* PAGINATION SECTION */}
       <div className=" w-full flex justify-end items-center mx-auto mt-6 mb-4">
         <div className="flex items-center gap-6 text-[16px] text-[#828282] select-none bg-transparent px-4 py-3 rounded-[5px]">
-          {/* Prev Button */}
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
@@ -369,7 +546,6 @@ export default function Page() {
             Prev
           </button>
 
-          {/* Number Track */}
           <div className="flex items-center gap-4 font-normal">
             <button
               onClick={() => handlePageChange(1)}
@@ -390,7 +566,6 @@ export default function Page() {
               3
             </button>
 
-            {/* Ellipsis mimicking your asset layout */}
             <span className="tracking-widest text-[#828282]">. . .</span>
 
             <button
@@ -401,7 +576,6 @@ export default function Page() {
             </button>
           </div>
 
-          {/* Next Button */}
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}

@@ -14,7 +14,7 @@ export default function Schedule() {
   return (
     <>
       <Path path={pathname} />
-      <div className=" h-auto  py-5 md:h-18 w-full flex-col items-start md:flex-row gap-4 flex md:justify-between bg-white rounded-[5px] px-4 my-2 md:items-center">
+      <div className="py-5 md:h-18 w-full flex-col items-start md:flex-row gap-4 flex md:justify-between bg-white rounded-[5px] px-4 my-2 md:items-center">
         <div>
           <p className="font-medium md:text-[14px] lg:text-[21px]">
             Weekly schedule from 25th to 1st November 2022

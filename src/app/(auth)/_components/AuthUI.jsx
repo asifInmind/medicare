@@ -18,6 +18,7 @@ export default function AuthUI() {
           alt="dashboard image"
           width={100}
           height={100}
+          loading="eager"
           className="w-127.5 h-98.75 mx-auto"
         />
         <p className="text-[25px] text-white font-normal my-3">

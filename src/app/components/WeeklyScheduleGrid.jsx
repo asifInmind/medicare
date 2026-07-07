@@ -2,183 +2,32 @@
 
 import React from "react";
 import {
+  DAYS,
+  TIME_SLOTS,
+  STATUS_STYLES,
+  APPOINTMENTS,
+} from "../../config/constents";
+import {
   UserIcon,
   DocumentTextIcon,
   ClockIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
 
-const DAYS = [
-  { id: "mon", label: "Mon(25)" },
-  { id: "tue", label: "Tue(26)" },
-  { id: "wed", label: "Wed(27)" },
-  { id: "thu", label: "Thurs(28)" },
-  { id: "fri", label: "Fri(29)" },
-  { id: "sat", label: "Sat(30)" },
-];
-
-const TIME_SLOTS = ["9:00", "10:00", "11:00", "12:00", "13:00"];
-
-const STATUS_STYLES = {
-  Pending: {
-    bg: "bg-red-100 border-red-200 text-red-700",
-    accent: "bg-[#EB5757]",
-    pill: "bg-red-200/50 text-red-700",
-    icons: "text-red-400",
-  },
-  Approved: {
-    bg: "bg-emerald-50 border-emerald-200 text-emerald-700",
-    accent: "bg-emerald-500",
-    pill: "bg-emerald-200/50 text-emerald-700",
-    icons: "text-emerald-400",
-  },
-  Ongoing: {
-    bg: "bg-blue-50 border-blue-200 text-blue-700",
-    accent: "bg-blue-500",
-    pill: "bg-blue-200/50 text-blue-700",
-    icons: "text-blue-400",
-  },
-  Tentative: {
-    bg: "bg-amber-50 border-amber-200 text-amber-700",
-    accent: "bg-amber-500",
-    pill: "bg-amber-200/50 text-amber-700",
-    icons: "text-amber-400",
-  },
-};
-
-const APPOINTMENTS = [
-  {
-    day: "mon",
-    time: "9:00",
-    status: "Pending",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "wed",
-    time: "9:00",
-    status: "Approved",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "fri",
-    time: "9:00",
-    status: "Pending",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "mon",
-    time: "10:00",
-    status: "Ongoing",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "tue",
-    time: "10:00",
-    status: "Pending",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "wed",
-    time: "10:00",
-    status: "Approved",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "thu",
-    time: "10:00",
-    status: "Ongoing",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "fri",
-    time: "10:00",
-    status: "Pending",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "sat",
-    time: "10:00",
-    status: "Tentative",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "tue",
-    time: "11:00",
-    status: "Approved",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "thu",
-    time: "11:00",
-    status: "Ongoing",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "sat",
-    time: "11:00",
-    status: "Pending",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "mon",
-    time: "13:00",
-    status: "Pending",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-  {
-    day: "sat",
-    time: "13:00",
-    status: "Tentative",
-    name: "John Adebeye",
-    type: "Medical appointment",
-    duration: "9:00 - 9:45",
-    location: "General clinic",
-  },
-];
-
 export default function WeeklyScheduleGrid() {
   return (
-    <div className="w-full h-[calc(100vh-100px)] max-h-200 bg-white rounded-xl border border-gray-100  flex flex-col overflow-hidden">
-      <div className="flex-1 overflow-auto">
+    <div className="w-full h-[calc(100vh-100px)] max-h-200 bg-white rounded-xl border border-gray-100  flex flex-col overflow-scroll hide-scrollbar">
+      <style jsx global>{`
+        .hide-scrollbar {
+          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none; /* Firefox */
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
+      `}</style>
+
+      <div className="flex-1 overflow-auto hide-scrollbar">
         <div className="grid grid-cols-[80px_repeat(6,minmax(220px,1fr))] min-w-350  relative">
           <div className="sticky top-0 left-0 bg-white z-30 border-b border-r border-gray-100 h-16" />
 

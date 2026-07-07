@@ -1,8 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MediCare Dashboard
 
-## Getting Started
+A modern, responsive healthcare/clinic management dashboard built with **Next.js**. MediCare Dashboard helps clinics manage patients, appointments, and daily schedules from a single, clean interface.
 
-First, run the development server:
+## ✨ Features
+
+- **Patient Management**
+  - Searchable, sortable patients table
+  - Smart status dropdown (opens up or down depending on available space) with outside-click-to-close behavior
+  - Add Patient form with validation
+- **Appointments**
+  - Appointment modal for creating and viewing appointment details
+  - Schedule timeline view for daily/weekly planning
+- **Responsive Design**
+  - Fully responsive layout across mobile, tablet, and desktop breakpoints
+  - Sticky sidebar navigation
+  - Collapsible hamburger menu on smaller screens
+- **Modern UI/UX**
+  - Clean, accessible component design
+  - Smooth interactions and polished visual details
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router)
+- **Language:** JavaScript / TypeScript
+- **Styling:** Tailwind CSS
+- **Icons:** Heroicons
+- **Animations:** Framer Motion
+- **Deployment:** Vercel
+
+## 📁 Project Structure
+
+```
+medicare-dashboard/
+├── app/
+│   ├── layout.js
+│   ├── page.js
+│   ├── patients/
+│   │   ├── page.js
+│   │   └── components/
+│   │       ├── PatientsTable.jsx
+│   │       ├── StatusDropdown.jsx
+│   │       └── AddPatientForm.jsx
+│   ├── appointments/
+│   │   ├── page.js
+│   │   └── components/
+│   │       ├── AppointmentModal.jsx
+│   │       └── ScheduleTimeline.jsx
+│   └── components/
+│       ├── Sidebar.jsx
+│       ├── Header.jsx
+│       └── Hamburger.jsx
+├── public/
+├── styles/
+│   └── globals.css
+├── tailwind.config.js
+├── next.config.js
+├── package.json
+└── README.md
+```
+
+> Adjust the structure above to match your actual folder layout.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm, yarn, or pnpm
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/asifinmind/medicare.git
+cd medicare
+
+# Install dependencies
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+DATABASE_URL=your_database_connection_string
+```
+
+### Running the Development Server
 
 ```bash
 npm run dev
@@ -10,27 +100,49 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## 📱 Responsive Design
 
-To learn more about Next.js, take a look at the following resources:
+The dashboard is built mobile-first with careful attention to breakpoints:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Breakpoint  | Behavior                                                                        |
+| ----------- | ------------------------------------------------------------------------------- |
+| `sm` / `md` | Sidebar collapses into a hamburger menu, patient table adapts to smaller widths |
+| `lg` and up | Full sidebar visible, patients table shows all columns                          |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧩 Key Components
 
-## Deploy on Vercel
+### Patients Table
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Displays patient records with a status dropdown for each row. The dropdown intelligently opens upward or downward based on its position in the viewport, and closes automatically when clicking outside of it.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Appointment Modal
+
+A reusable modal for scheduling and viewing appointment details, triggered from the schedule timeline or patients table.
+
+### Schedule Timeline
+
+A visual timeline component for viewing appointments across a day or week.
+
+## 🧪 Scripts
+
+| Script          | Description              |
+| --------------- | ------------------------ |
+| `npm run dev`   | Start development server |
+| `npm run build` | Build for production     |
+| `npm run start` | Start production server  |
+| `npm run lint`  | Run linter               |
+
+## 📬 Contact
+
+For questions or support, please open an issue in the repository.
